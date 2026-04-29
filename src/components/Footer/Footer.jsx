@@ -8,11 +8,11 @@ import footerImage from "@/assets/logo.png"
 
 const Footer = () => {
     return (
-        <footer className='bg-[#244D3F] pt-12 pb-6'>
+        <footer className='bg-gradient-to-br from-[#0b1220] via-[#111827] to-[#1f3b4d] md:pt-12 md:pb-6'>
             <div className='w-11/12 sm:w-10/12 mx-auto'>
 
                 {/* Top Section */}
-                <div className='grid gap-10 md:grid-cols-2 lg:grid-cols-3 items-center text-center lg:justify-items-center md:text-left'>
+                <div className='grid gap-3 md:gap-10 md:grid-cols-2 lg:grid-cols-3 items-center text-center lg:justify-items-center md:text-left'>
 
                     {/* Brand */}
                     <div>
@@ -85,10 +85,10 @@ const Footer = () => {
                 </div>
 
                 {/* Divider */}
-                <hr className='border-white opacity-10 my-10' />
+                <hr className='border-white opacity-10 my-5 md:my-10' />
 
                 {/* Bottom Section */}
-                <div className='flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left'>
+                <div className='flex flex-col md:flex-row items-center justify-between gap-1 md:gap-4 text-center md:text-left'>
                     <p className='text-white opacity-70 text-sm'>
                         © 2026 Tilix. All rights reserved.
                     </p>
