@@ -1,22 +1,24 @@
 import Image from 'next/image';
 import React from 'react';
 
-const FeaturedTileCard = ({ tile }) => {
+const TileCard = ({ tile }) => {
     return (
         <div className="group bg-white border border-[#E5E5E5] shadow-[6px_6px_0px_#111] overflow-hidden">
 
-            <div className="relative w-full h-56 bg-[#F3F3F3]">
+            <div className="relative w-full h-56 bg-[#F3F3F3] overflow-hidden group">
                 <Image
                     src={tile?.image}
                     alt={tile.title}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                 />
-                <span className="absolute top-3 left-3 bg-black text-white text-[11px] px-3 py-[2px] uppercase tracking-widest">
+
+                <span className="absolute top-3 left-3 bg-black text-white text-[11px] px-3 py-[2px] uppercase tracking-widest z-10">
                     {tile.category}
                 </span>
+
                 {!tile.inStock && (
-                    <span className="absolute top-3 right-3 bg-[#D72050] text-white text-[11px] px-3 py-[2px]">
+                    <span className="absolute top-3 right-3 bg-[#D72050] text-white text-[11px] px-3 py-[2px] z-10">
                         Out of Stock
                     </span>
                 )}
@@ -48,4 +50,4 @@ const FeaturedTileCard = ({ tile }) => {
     );
 };
 
-export default FeaturedTileCard;
+export default TileCard;

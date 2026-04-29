@@ -1,7 +1,7 @@
 import Marquee from "react-fast-marquee";
 
 const NewArrivalsMarquee = async () => {
-    const res = await fetch("https://tilix-pink.vercel.app/data.json");
+    const res = await fetch("http://localhost:3000/data.json");
     const data = await res.json();
     const tilesData = data.slice(0, 8);
 
