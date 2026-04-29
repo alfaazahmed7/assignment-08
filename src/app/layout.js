@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono, Nunito } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/shared/Navbar/Navbar";
+import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer/Footer";
 
 const ninitoFont = Nunito({
   subsets: ["latin"],
@@ -16,7 +17,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       data-theme="light"
-       className={`${ninitoFont.className}  h-full antialiased`}
+      className={`${ninitoFont.className}  h-full antialiased`}
     >
       <body>
         <Navbar />
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
 
+        <Footer />
       </body>
     </html>
   );
