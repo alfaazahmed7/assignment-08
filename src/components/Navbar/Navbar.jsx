@@ -25,7 +25,7 @@ const Navbar = () => {
     return (
         <div className={`sticky top-0 z-10 transition-all duration-300 ${scrolled
             ? "bg-gray-200/70 backdrop-blur-sm shadow-md"
-            : "bg-white"
+            : "bg-[#F3F3F3]"
             }`}>
             <div className="navbar md:w-11/12 lg:w-10/12 mx-auto">
                 <div className="navbar-start">
