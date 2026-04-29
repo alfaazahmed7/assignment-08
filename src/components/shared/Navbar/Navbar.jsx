@@ -1,12 +1,32 @@
+'use client'
 import Link from "next/link";
 import NavLink from "./NavLink";
 import Image from "next/image";
 import navbarImage from "@/assets/logo.png"
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 10) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
-        <div className="bg-base-100">
+        <div className={`sticky top-0 z-10 transition-all duration-300 ${scrolled
+            ? "bg-gray-200/70 backdrop-blur-sm shadow-md"
+            : "bg-white"
+            }`}>
             <div className="navbar md:w-11/12 lg:w-10/12 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
