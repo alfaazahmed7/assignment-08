@@ -6,16 +6,27 @@ const NewArrivalsMarquee = async () => {
     const tilesData = data.slice(0, 8);
 
     return (
-        <div className='w-10/12 mx-auto flex gap-2 bg-[#F3F3F3] px-4 py-2 my-6'>
+        <div className='w-10/12 mx-auto flex gap-3 bg-[#F3F3F3] px-4 py-2 my-6'>
             <button className="bg-[#D72050] px-5 py-2 text-white font-semibold tracking-wide border border-[#D72050] shadow-[4px_4px_0px_#000] hover:bg-white hover:text-[#D72050]">
                 Latest
             </button>
-            <Marquee pauseOnHover={true}>
+
+            <Marquee pauseOnHover={true} speed={50}>
                 {tilesData.map((tile) => (
-                    <p key={tile._id} className='mr-10 font-medium'>
+                    <span key={tile.id} className='mr-10 font-medium'>
                         New Arrivals: {tile.title}
-                    </p>
+                    </span>
                 ))}
+                <span className="mr-10">|</span>
+
+                <span className='mr-10 font-medium'>
+                    Weekly Feature: Modern Geometric Patterns
+                </span>
+                <span className="mr-10">|</span>
+
+                <span className='mr-10 font-medium'>
+                    Join the Community
+                </span>
             </Marquee>
         </div>
     );
