@@ -8,9 +8,9 @@ const allTiles = async () => {
     return (
         <div className='w-10/12 mx-auto my-14'>
 
-            <h2 className='text-9xl font-semibold text-center my-5'>Find <span className='text-[#000000c4] font-bold text-9xl'>your</span> tile</h2>
+            <h2 className='text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold text-center my-5'>Find <span className='text-[#000000c4] font-bold text-4xl  sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl'>your</span> tile</h2>
 
-            <div className='flex justify-end gap-2 mb-5'>
+            <div className='flex justify-center md:justify-end gap-2 mb-5'>
                 <label className="input">
                     <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g

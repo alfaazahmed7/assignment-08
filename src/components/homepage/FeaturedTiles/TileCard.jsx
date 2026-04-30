@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const TileCard = ({ tile }) => {
@@ -41,9 +42,11 @@ const TileCard = ({ tile }) => {
                     <p className="text-lg font-bold text-[#111]">
                         <span className="text-[#D72050]">$</span>{tile.price}
                     </p>
-                    <button className="px-4 py-1 border border-black text-sm font-medium shadow-[3px_3px_0px_#000] hover:bg-black hover:text-white">
+                    <Link
+                        href={`/all-tiles/${tile.id}`}
+                        className="px-4 py-1 border border-black text-sm font-medium shadow-[3px_3px_0px_#000] hover:bg-black hover:text-white">
                         View Details
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>
