@@ -2,12 +2,10 @@ import Image from "next/image";
 
 const TileDetailsPage = async ({ params }) => {
     const { id } = await params;
-    // console.log(id, "id");
 
     const res = await fetch("http://localhost:3000/data.json");
     const allTiles = await res.json();
     const expectedTile = allTiles.find(tile => tile.id == id);
-    // console.log(expectedTile, "expectedTile");
 
     return (
         <div className="w-11/12 max-w-6xl mx-auto py-10">
@@ -16,7 +14,7 @@ const TileDetailsPage = async ({ params }) => {
                 {/* Image Section */}
                 <div className="relative w-full h-[350px] md:min-h-[50vh] bg-gray-100">
                     <Image
-                        src={expectedTile.image}
+                        src={expectedTile?.image}
                         alt={expectedTile.title}
                         fill
                         className="object-cover"
