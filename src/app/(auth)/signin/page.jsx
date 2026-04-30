@@ -25,7 +25,6 @@ export default function SignInPage() {
             email,
             password
         });
-
         if (error) {
             toast.update(toastId, {
                 render: "Sign in failed. Check your credentials.",
@@ -48,71 +47,67 @@ export default function SignInPage() {
         }, 1200);
     };
 
+    const handleGoogleSignIn = async () => {
+        await authClient.signIn.social({
+            provider: "google"
+        });
+    };
+
     return (
-        <Card className="mx-auto w-125 py-10 my-14">
-            <h1 className="text-center text-2xl font-bold">Sign In</h1>
+        <div className="mx-5 flex items-center justify-center min-h-[80vh]">
+            <Card className="w-full max-w-md py-10">
+                <h1 className="text-center text-2xl font-bold">Sign In</h1>
 
-            <Form className="flex mx-auto flex-col gap-4" onSubmit={onSubmit}>
+                <Form className="w-full px-6 flex flex-col gap-4" onSubmit={onSubmit}>
 
-                <TextField
-                    isRequired
-                    name="email"
-                    type="email"
-                    validate={(value) => {
-                        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                            return "Please enter a valid email address";
-                        }
+                    <TextField
+                        isRequired
+                        name="email"
+                        type="email"
+                    >
+                        <Label>Email</Label>
+                        <Input
+                            placeholder="john@example.com"
+                            className={"w-full rounded-full"} />
+                        <FieldError />
+                    </TextField>
 
-                        return null;
-                    }}
-                >
-                    <Label>Email</Label>
-                    <Input
-                        placeholder="john@example.com"
-                        className={"w-full rounded-full"} />
-                    <FieldError />
-                </TextField>
+                    <TextField
+                        isRequired
+                        minLength={8}
+                        name="password"
+                        type="password"
+                    >
+                        <Label>Password</Label>
+                        <Input
+                            placeholder="Enter your password"
+                            className={"w-full rounded-full"}
+                        />
+                        <FieldError />
+                    </TextField>
 
-                <TextField
-                    isRequired
-                    minLength={8}
-                    name="password"
-                    type="password"
-                    validate={(value) => {
-                        if (value.length < 8) {
-                            return "Password must be at least 8 characters";
-                        }
-                        if (!/[A-Z]/.test(value)) {
-                            return "Password must contain at least one uppercase letter";
-                        }
-                        if (!/[0-9]/.test(value)) {
-                            return "Password must contain at least one number";
-                        }
+                    <div className="flex gap-2">
+                        <Button type="submit">
+                            <Check />
+                            Submit
+                        </Button>
+                        <Button type="reset" variant="secondary">
+                            Reset
+                        </Button>
+                    </div>
 
-                        return null;
-                    }}
-                >
-                    <Label>Password</Label>
-                    <Input
-                        placeholder="Enter your password"
-                        className={"w-full rounded-full"}
-                    />
-                    <Description>
-                        Must be at least 8 characters with 1 uppercase and 1 number
-                    </Description>
-                    <FieldError />
-                </TextField>
-
-                <div className="flex gap-2">
-                    <Button type="submit">
-                        <Check />
-                        Submit
-                    </Button>
-                    <Button type="reset" variant="secondary">
-                        Reset
-                    </Button>
-                </div>
-            </Form>
-        </Card>
+                    <div>
+                        <p className="text-center mb-1">or</p>
+                        <Button
+                            onClick={handleGoogleSignIn}
+                            variant="outline"
+                            className={"w-full p-2"}
+                        >
+                            Login with Google
+                        </Button>
+                    </div>
+                </Form>
+            </Card>
+        </div>
     );
 }
