@@ -87,7 +87,7 @@ const Navbar = () => {
                         <NavLink href={"/all-tiles"}>
                             All Tiles
                         </NavLink>
-                        <NavLink href={"/Profile"}>
+                        <NavLink href={"/profile"}>
                             Profile
                         </NavLink>
                     </ul>
