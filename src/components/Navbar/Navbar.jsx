@@ -4,6 +4,9 @@ import NavLink from "./NavLink";
 import Image from "next/image";
 import navbarImage from "@/assets/logo.png"
 import { useEffect, useState } from "react";
+import { authClient } from "@/lib/auth-client";
+import { Avatar, Button } from "@heroui/react";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -21,6 +24,26 @@ const Navbar = () => {
 
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    const userData = authClient.useSession();
+    const user = userData.data?.user;
+    console.log(user, "user");
+
+    const handleSignOut = async () => {
+        const toastId = toast.loading("Signing you out...");
+        await authClient.signOut();
+
+        toast.update(toastId, {
+            render: "You've been signed out.",
+            type: "success",
+            isLoading: false,
+            autoClose: 1500,
+        });
+
+        setTimeout(() => {
+            window.location.href = "/";
+        }, 1000);
+    };
 
     return (
         <div className={`sticky top-0 z-10 transition-all duration-300 ${scrolled
@@ -69,13 +92,46 @@ const Navbar = () => {
                         </NavLink>
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <Link
-                        href="/signin"
-                        className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-black rounded-lg shadow-md hover:bg-gray-900 active:scale-95"
-                    >
-                        Login
-                    </Link>
+                <div className="flex gap-2 navbar-end">
+                    {
+                        user ?
+                            <div className="flex items-center gap-2">
+                                <div>
+                                    <Avatar>
+                                        <Avatar.Image
+                                            alt="John Doe"
+                                            src={user?.image}
+                                            referrerPolicy="no-referrer"
+                                        />
+                                        <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                                    </Avatar>
+                                </div>
+                                <div>
+                                    <button
+                                        onClick={handleSignOut}
+                                        className="inline-flex items-center justify-center px-5 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer"
+                                    >
+                                        Sign Out
+                                    </button>
+                                </div>
+                            </div>
+                            :
+                            <div className="flex gap-2">
+                                <Link
+                                    href="/signin"
+                                    className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100"
+                                >
+                                    Login
+                                </Link>
+
+                                <Link
+                                    href="/signup"
+                                    className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-black rounded-lg hover:bg-gray-900"
+                                >
+                                    Sign Up
+                                </Link>
+                            </div>
+                    }
                 </div>
             </div>
         </div>

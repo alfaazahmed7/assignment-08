@@ -11,24 +11,31 @@ import {
     Label,
     TextField,
 } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-export default function SignInPage() {
+export default function SignUpPage() {
+    const router = useRouter();
+
     const onSubmit = async (e) => {
         e.preventDefault();
+        const name = e.target.name.value;
+        const image = e.target.image.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        const toastId = toast.loading("Signing you in...");
+        const toastId = toast.loading("Creating your account...");
 
-        const { data, error } = await authClient.signIn.email({
+        const { data, error } = await authClient.signUp.email({
+            name,
+            image,
             email,
             password
         });
 
         if (error) {
             toast.update(toastId, {
-                render: "Sign in failed. Check your credentials.",
+                render: "Sign up failed. Please try again.",
                 type: "error",
                 isLoading: false,
                 autoClose: 3000,
@@ -37,22 +44,39 @@ export default function SignInPage() {
         }
 
         toast.update(toastId, {
-            render: "Welcome back. Redirecting...",
+            render: "Account created. Welcome aboard.",
             type: "success",
             isLoading: false,
             autoClose: 1500,
         });
 
         setTimeout(() => {
-            window.location.href = "/";
+            router.push("/");
         }, 1200);
     };
 
     return (
         <Card className="mx-auto w-125 py-10 my-14">
-            <h1 className="text-center text-2xl font-bold">Sign In</h1>
+            <h1 className="text-center text-2xl font-bold">Sign Up</h1>
 
             <Form className="flex mx-auto flex-col gap-4" onSubmit={onSubmit}>
+                <TextField isRequired name="name" type="text">
+                    <Label>Name</Label>
+                    <Input
+                        placeholder="Enter your name"
+                        className={"w-full rounded-full"}
+                    />
+                    <FieldError />
+                </TextField>
+
+                <TextField isRequired name="image" type="text">
+                    <Label>Image URL</Label>
+                    <Input
+                        placeholder="Image URL"
+                        className={"w-full rounded-full"}
+                    />
+                    <FieldError />
+                </TextField>
 
                 <TextField
                     isRequired

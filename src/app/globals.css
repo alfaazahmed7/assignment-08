@@ -1,2 +1,7 @@
 @import "tailwindcss";
+
+/* DaisyUI plugin */
 @plugin "daisyui";
+
+/* HeroUI styles LAST so it overrides cleanly */
+@import "@heroui/styles";

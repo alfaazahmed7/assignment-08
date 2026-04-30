@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Nunito } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import { ToastContainer } from "react-toastify";
 
 const ninitoFont = Nunito({
   subsets: ["latin"],
@@ -21,12 +22,18 @@ export default function RootLayout({ children }) {
     >
       <body>
         <Navbar />
-
         <main className="">
           {children}
         </main>
-
         <Footer />
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar
+          closeOnClick
+          pauseOnHover
+          theme="dark"
+        />
       </body>
     </html>
   );
