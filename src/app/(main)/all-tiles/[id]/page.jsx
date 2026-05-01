@@ -3,9 +3,7 @@ import Image from "next/image";
 const TileDetailsPage = async ({ params }) => {
     const { id } = await params;
 
-    const res = await fetch("http://localhost:3000/data.json", {
-        cache: "no-store"
-    });
+    const res = await fetch("https://tilix-eight.vercel.app/data.json");
     const allTiles = await res.json();
     const expectedTile = allTiles.find(tile => tile.id == id);
 
