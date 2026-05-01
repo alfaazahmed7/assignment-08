@@ -25,7 +25,7 @@ const Banner = () => {
                 <div className="mt-8">
                     <Link
                         href="/all-tiles"
-                        className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-emerald-600 rounded-full shadow-lg hover:bg-emerald-500 active:scale-95"
+                        className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-emerald-600 rounded-full shadow-lg hover:bg-emerald-500 active:scale-95 animate__animated animate__pulse animate__infinite"
                     >
                         Browse Now
                     </Link>
