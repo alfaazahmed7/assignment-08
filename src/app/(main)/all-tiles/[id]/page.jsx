@@ -3,7 +3,9 @@ import Image from "next/image";
 const TileDetailsPage = async ({ params }) => {
     const { id } = await params;
 
-    const res = await fetch("http://localhost:3000/data.json");
+    const res = await fetch("http://localhost:3000/data.json", {
+        cache: "no-store"
+    });
     const allTiles = await res.json();
     const expectedTile = allTiles.find(tile => tile.id == id);
 

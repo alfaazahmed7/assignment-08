@@ -4,7 +4,9 @@ import TileCard from "@/components/homepage/FeaturedTiles/TileCard";
 const AllTiles = async ({ searchParams }) => {
     const sp = await searchParams;
     const search = sp?.search?.toLowerCase() || "";
-    const res = await fetch("http://localhost:3000/data.json");
+    const res = await fetch("http://localhost:3000/data.json", {
+        cache: "no-store"
+    });
     const allTiles = await res.json();
     const filteredTiles = allTiles.filter(tile =>
         tile.title.toLowerCase().includes(search)

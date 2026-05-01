@@ -2,7 +2,9 @@ import React from 'react';
 import TileCard from './TileCard';
 
 const FeaturedTiles = async () => {
-    const res = await fetch("http://localhost:3000/data.json");
+    const res = await fetch("http://localhost:3000/data.json", {
+        cache: "no-store"
+    });
     const data = await res.json();
     const featuredTiles = data.filter(tile => tile.featured).slice(0, 4);
 
