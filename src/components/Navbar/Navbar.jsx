@@ -22,6 +22,7 @@ const Navbar = () => {
 
     const userData = authClient.useSession();
     const user = userData.data?.user;
+    const isPending = userData.isPending;
 
     const handleSignOut = async () => {
         const toastId = toast.loading("Signing you out...");
@@ -91,38 +92,41 @@ const Navbar = () => {
 
                 <div className="navbar-end flex items-center gap-3">
 
-                    {user ? (
-                        <div className="flex items-center gap-3">
+                    {isPending ?
+                        <span className="loading loading-spinner loading-xl"></span>
+                        :
+                        user ? (
+                            <div className="flex items-center gap-3">
 
-                            <Avatar className="ring-2 ring-primary/20">
-                                <Avatar.Image
-                                    alt={user?.name}
-                                    src={user?.image}
-                                    referrerPolicy="no-referrer"
-                                />
-                                <Avatar.Fallback>
-                                    {user?.name?.charAt(0)}
-                                </Avatar.Fallback>
-                            </Avatar>
+                                <Avatar className="ring-2 ring-primary/20">
+                                    <Avatar.Image
+                                        alt={user?.name}
+                                        src={user?.image}
+                                        referrerPolicy="no-referrer"
+                                    />
+                                    <Avatar.Fallback>
+                                        {user?.name?.charAt(0)}
+                                    </Avatar.Fallback>
+                                </Avatar>
 
-                            <button
-                                onClick={handleSignOut}
-                                className="btn btn-sm rounded-xl bg-base-100 hover:bg-base-200 border border-base-300 normal-case font-medium"
-                            >
-                                Sign Out
-                            </button>
-                        </div>
-                    ) : (
-                        <div className="flex gap-2">
+                                <button
+                                    onClick={handleSignOut}
+                                    className="btn btn-sm rounded-xl bg-base-100 hover:bg-base-200 border border-base-300 normal-case font-medium"
+                                >
+                                    Sign Out
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="flex gap-2">
 
-                            <Link
-                                href="/signin"
-                                className="btn btn-sm rounded-xl bg-gradient-to-r from-primary to-secondary text-white border-none shadow-md hover:shadow-lg normal-case font-semibold"
-                            >
-                                Login
-                            </Link>
-                        </div>
-                    )}
+                                <Link
+                                    href="/signin"
+                                    className="btn btn-sm rounded-xl bg-gradient-to-r from-primary to-secondary text-white border-none shadow-md hover:shadow-lg normal-case font-semibold"
+                                >
+                                    Login
+                                </Link>
+                            </div>
+                        )}
                 </div>
             </div>
         </div>
