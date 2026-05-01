@@ -21,8 +21,7 @@ The main goal of this project is to:
 
 ## 🌐 Live URL
 
-👉 https://your-live-link-here.vercel.app
-*(Replace with your deployed Vercel link)*
+👉 https://tilix-eight.vercel.app/
 
 ---
 
@@ -120,7 +119,7 @@ public/
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/tilix.git
+git clone https://github.com/alfaazahmed7/tilix
 
 # Navigate to project folder
 cd tilix
