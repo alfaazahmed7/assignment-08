@@ -9,10 +9,10 @@ const TileDetailsPage = async ({ params }) => {
 
     return (
         <div className="w-11/12 max-w-6xl mx-auto py-10">
-            <div className="grid md:grid-cols-2 gap-10 bg-white rounded-3xl shadow-xl overflow-hidden">
+            <div className="grid md:grid-cols-2 md:gap-10 bg-white rounded-3xl shadow-xl overflow-hidden">
 
                 {/* Image Section */}
-                <div className="relative w-full h-[350px] md:min-h-[50vh] bg-gray-100">
+                <div className="relative w-full h-[300px] md:min-h-[50vh] bg-gray-100">
                     <Image
                         src={expectedTile?.image}
                         alt={expectedTile.title}
@@ -58,7 +58,7 @@ const TileDetailsPage = async ({ params }) => {
                     </div>
 
                     {/* Price + Button */}
-                    <div className="flex items-center justify-between mt-4">
+                    <div className="flex items-center justify-between md:mt-4">
                         <h2 className="text-2xl font-bold text-indigo-600">
                             {expectedTile.currency} {expectedTile.price}
                         </h2>

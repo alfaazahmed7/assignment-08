@@ -62,32 +62,45 @@ export default function SignUpPage() {
     };
 
     return (
-        <div className="mx-5 flex items-center justify-center min-h-[80vh]">
-            <Card className="w-full max-w-md py-10">
-                <h1 className="text-center text-2xl font-bold">Sign Up</h1>
+        <div className="mx-5 flex items-center justify-center min-h-[80vh] bg-gradient-to-br from-base-100 to-base-200">
+
+            <Card className="w-full max-w-md p-8 rounded-3xl shadow-xl border border-base-200">
+
+                {/* Header */}
+                <div className="text-center mb-6">
+                    <h1 className="text-3xl font-bold tracking-tight">
+                        Create Account
+                    </h1>
+                    <p className="text-sm text-gray-500 mt-1">
+                        Join us and start your journey
+                    </p>
+                </div>
 
                 <Form
-                    className="w-full px-6 flex flex-col gap-4"
+                    className="w-full flex flex-col gap-5"
                     onSubmit={onSubmit}
                 >
+                    {/* Name */}
                     <TextField isRequired name="name" type="text">
-                        <Label>Name</Label>
+                        <Label className="text-sm font-medium">Name</Label>
                         <Input
                             placeholder="Enter your name"
-                            className={"w-full rounded-full"}
+                            className="w-full rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/40 transition-all"
                         />
                         <FieldError />
                     </TextField>
 
+                    {/* Image */}
                     <TextField isRequired name="image" type="text">
-                        <Label>Image URL</Label>
+                        <Label className="text-sm font-medium">Profile Image</Label>
                         <Input
-                            placeholder="Image URL"
-                            className={"w-full rounded-full"}
+                            placeholder="https://example.com/avatar.jpg"
+                            className="w-full rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/40 transition-all"
                         />
                         <FieldError />
                     </TextField>
 
+                    {/* Email */}
                     <TextField
                         isRequired
                         name="email"
@@ -96,17 +109,18 @@ export default function SignUpPage() {
                             if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
                                 return "Please enter a valid email address";
                             }
-
                             return null;
                         }}
                     >
-                        <Label>Email</Label>
+                        <Label className="text-sm font-medium">Email</Label>
                         <Input
                             placeholder="john@example.com"
-                            className={"w-full rounded-full"} />
+                            className="w-full rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/40 transition-all"
+                        />
                         <FieldError />
                     </TextField>
 
+                    {/* Password */}
                     <TextField
                         isRequired
                         minLength={8}
@@ -122,41 +136,56 @@ export default function SignUpPage() {
                             if (!/[0-9]/.test(value)) {
                                 return "Password must contain at least one number";
                             }
-
                             return null;
                         }}
                     >
-                        <Label>Password</Label>
+                        <Label className="text-sm font-medium">Password</Label>
                         <Input
                             placeholder="Enter your password"
-                            className={"w-full rounded-full"}
+                            className="w-full rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/40 transition-all"
                         />
-                        <Description>
-                            Must be at least 8 characters with 1 uppercase and 1 number
+                        <Description className="text-xs text-gray-400">
+                            At least 8 characters, 1 uppercase & 1 number
                         </Description>
                         <FieldError />
                     </TextField>
 
-                    <div className="flex gap-2">
-                        <Button type="submit">
+                    {/* Buttons */}
+                    <div className="flex gap-3 mt-2">
+                        <Button
+                            type="submit"
+                            color="primary"
+                            className="flex-1 rounded-xl font-medium shadow-md"
+                        >
                             <Check />
-                            Submit
+                            Create Account
                         </Button>
-                        <Button type="reset" variant="secondary">
+
+                        <Button
+                            type="reset"
+                            variant="flat"
+                            className="flex-1 rounded-xl hover:bg-base-200"
+                        >
                             Reset
                         </Button>
                     </div>
 
-                    <div>
-                        <p className="text-center mb-1">or</p>
-                        <Button
-                            onClick={handleGoogleSignIn}
-                            variant="outline"
-                            className={"w-full p-2"}
-                        >
-                            Login with Google
-                        </Button>
+                    {/* Divider */}
+                    <div className="flex items-center gap-3 my-1">
+                        <div className="flex-1 h-px bg-gray-200" />
+                        <span className="text-xs text-gray-400">OR</span>
+                        <div className="flex-1 h-px bg-gray-200" />
                     </div>
+
+                    {/* Google */}
+                    <Button
+                        onClick={handleGoogleSignIn}
+                        variant="bordered"
+                        className="w-full rounded-xl font-medium bg-base-200 transition"
+                    >
+                        Continue with Google
+                    </Button>
+
                 </Form>
             </Card>
         </div>

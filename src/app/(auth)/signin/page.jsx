@@ -4,13 +4,13 @@ import { Check } from "@gravity-ui/icons";
 import {
     Button,
     Card,
-    Description,
     FieldError,
     Form,
     Input,
     Label,
     TextField,
 } from "@heroui/react";
+import Link from "next/link";
 import { toast } from "react-toastify";
 
 export default function SignInPage() {
@@ -25,6 +25,7 @@ export default function SignInPage() {
             email,
             password
         });
+
         if (error) {
             toast.update(toastId, {
                 render: "Sign in failed. Check your credentials.",
@@ -54,58 +55,93 @@ export default function SignInPage() {
     };
 
     return (
-        <div className="mx-5 flex items-center justify-center min-h-[80vh]">
-            <Card className="w-full max-w-md py-10">
-                <h1 className="text-center text-2xl font-bold">Sign In</h1>
+        <div className="mx-5 flex items-center justify-center min-h-[80vh] bg-gradient-to-br from-base-100 to-base-200">
 
-                <Form className="w-full px-6 flex flex-col gap-4" onSubmit={onSubmit}>
+            <Card className="w-full max-w-md p-8 rounded-3xl shadow-xl border border-base-200 backdrop-blur-md">
 
-                    <TextField
-                        isRequired
-                        name="email"
-                        type="email"
-                    >
-                        <Label>Email</Label>
+                {/* Header */}
+                <div className="text-center mb-6">
+                    <h1 className="text-3xl font-bold tracking-tight">
+                        Welcome Back
+                    </h1>
+                    <p className="text-sm text-gray-500 mt-1">
+                        Sign in to continue your journey
+                    </p>
+                </div>
+
+                <Form className="w-full flex flex-col gap-5" onSubmit={onSubmit}>
+
+                    {/* Email */}
+                    <TextField isRequired name="email" type="email">
+                        <Label className="text-sm font-medium">Email</Label>
                         <Input
                             placeholder="john@example.com"
-                            className={"w-full rounded-full"} />
+                            className="w-full rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/40 transition-all"
+                        />
                         <FieldError />
                     </TextField>
 
+                    {/* Password */}
                     <TextField
                         isRequired
                         minLength={8}
                         name="password"
                         type="password"
                     >
-                        <Label>Password</Label>
+                        <Label className="text-sm font-medium">Password</Label>
                         <Input
                             placeholder="Enter your password"
-                            className={"w-full rounded-full"}
+                            className="w-full rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary/40 transition-all"
                         />
                         <FieldError />
                     </TextField>
 
-                    <div className="flex gap-2">
-                        <Button type="submit">
+                    {/* Buttons */}
+                    <div className="flex gap-3 mt-2">
+                        <Button
+                            type="submit"
+                            className="flex-1 rounded-xl font-medium shadow-md"
+                            color="primary"
+                        >
                             <Check />
-                            Submit
+                            Sign In
                         </Button>
-                        <Button type="reset" variant="secondary">
+                        <Button
+                            type="reset"
+                            variant="flat"
+                            className="flex-1 rounded-xl hover:bg-base-200"
+                        >
                             Reset
                         </Button>
                     </div>
 
-                    <div>
-                        <p className="text-center mb-1">or</p>
-                        <Button
-                            onClick={handleGoogleSignIn}
-                            variant="outline"
-                            className={"w-full p-2"}
+                    {/* Register */}
+                    <p className="text-center text-sm text-gray-500 mt-2">
+                        Don’t have an account?{" "}
+                        <Link
+                            href="/signup"
+                            className="text-primary font-semibold hover:underline"
                         >
-                            Login with Google
-                        </Button>
+                            Register
+                        </Link>
+                    </p>
+
+                    {/* Divider */}
+                    <div className="flex items-center gap-3 my-1">
+                        <div className="flex-1 h-px bg-gray-200" />
+                        <span className="text-xs text-gray-400">OR</span>
+                        <div className="flex-1 h-px bg-gray-200" />
                     </div>
+
+                    {/* Google */}
+                    <Button
+                        onClick={handleGoogleSignIn}
+                        variant="bordered"
+                        className="w-full rounded-xl font-medium bg-base-200 transition"
+                    >
+                        Continue with Google
+                    </Button>
+
                 </Form>
             </Card>
         </div>

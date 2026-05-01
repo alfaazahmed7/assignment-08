@@ -1,14 +1,16 @@
 'use client'
-import { UpdateUserModal } from "@/components/Profile/UpdateUserModal";
+// import { UpdateUserModal } from "@/components/Profile/UpdateUserModal";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
+import Link from "next/link";
+import { FiUserCheck } from "react-icons/fi";
 
 const ProfilePage = () => {
     const userData = authClient.useSession();
     const user = userData.data?.user;
 
     return (
-        <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="flex items-center justify-center min-h-[54vh]">
             <div className="w-full max-w-sm bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl p-6  hover:shadow-[0_0_40px_rgba(0,0,0,0.2)]">
 
                 {/* Profile Image */}
@@ -68,8 +70,13 @@ const ProfilePage = () => {
                 </div>
 
                 {/* Button */}
-                <div className="flex justify-center">
-                    <UpdateUserModal />
+                <div className="flex justify-center mt-2">
+                    <Link
+                        href={"/update-profile-info"}
+                        className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-black rounded-lg hover:bg-gray-900">
+                        <FiUserCheck className="text-lg" />
+                        Update Profile
+                    </Link>
                 </div>
             </div>
         </div>
